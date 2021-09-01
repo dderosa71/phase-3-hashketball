@@ -1,4 +1,6 @@
 # Write your code below game_hash
+
+
 def game_hash
   {
     home: {
@@ -126,4 +128,50 @@ def game_hash
   }
 end
 
+def all_players
+  game_hash[:home][:players].concat(game_hash[:away][:players])
+end
+
+def num_points_scored(player)
+   all_players.filter {|item| item[:player_name] == player}[0][:points]
+end
+
+def team_colors(team_name)
+  team_name == "Brooklyn Nets" ? game_hash[:home][:colors] :  game_hash[:away][:colors]
+end
+
+def shoe_size(player)
+  all_players.filter {|item| item[:player_name]==player}[0][:shoe]
+end 
+
+def team_names
+  [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+end
 # Write code here
+
+def player_numbers(team)
+  if game_hash[:home][:team_name] == team
+    deliver_me = game_hash[:home][:players].map do |item|
+      item[:number]
+    end
+    else
+      deliver_me =  game_hash[:away][:players].map do |item|
+        item[:number]
+      end
+    end
+    deliver_me
+  end
+
+def big_shoe_rebounds
+ sorted = all_players.sort {|a,b| a[:shoe]<=> b[:shoe]}[all_players.length-1][:rebounds]
+#  puts sorted[]
+end
+
+
+
+
+
+
+def player_stats(player)
+  all_players.filter {|item| item[:player_name] == player}[0]
+end
